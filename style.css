@@ -1,0 +1,424 @@
+/* Base styles */
+:root {
+    --primary: #6a11cb;
+    --secondary: #2575fc;
+    --light: #ffffff;
+    --dark: #333333;
+    --success: #28a745;
+    --danger: #dc3545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* For the bubbles, change their color and animation */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    animation: pulse 6s ease-in-out infinite, float 10s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1) translateY(0) translateX(0) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.1) translateY(-20px) translateX(15px) rotate(45deg);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    33% {
+        transform: translateY(-30px) translateX(30px);
+    }
+    66% {
+        transform: translateY(20px) translateX(-20px);
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: float 8s ease-in-out infinite;
+}
+
+.bubble:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.bubble:nth-child(2) {
+    width: 120px;
+    height: 120px;
+    top: 20%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.bubble:nth-child(3) {
+    width: 60px;
+    height: 60px;
+    bottom: 30%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(4) {
+    width: 100px;
+    height: 100px;
+    bottom: 10%;
+    right: 25%;
+    animation-delay: 3s;
+}
+
+.bubble:nth-child(5) {
+    width: 70px;
+    height: 70px;
+    top: 40%;
+    left: 40%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(-40px) translateX(20px);
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+/* Container styles */
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px);
+    animation: fadeIn 0.8s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Input styles */
+.input-container {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    font-size: 16px;
+    background-color: #f5f5f5;
+    transition: all 0.3s;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--secondary);
+}
+
+.input-container button {
+    background: linear-gradient(to right, var(--secondary), var(--primary));
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.input-container button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.input-container button:active {
+    transform: translateY(0);
+}
+
+/* Filter buttons */
+.filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.filter {
+    background: transparent;
+    border: none;
+    color: #777;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.filter:hover {
+    color: var(--primary);
+}
+
+.filter.active {
+    color: var(--primary);
+    font-weight: bold;
+    box-shadow: 0 2px 0 var(--secondary);
+}
+
+/* Task list */
+.task-list {
+    list-style-type: none;
+    margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.task-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    animation: slideIn 0.3s forwards;
+    transform: translateX(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.task-item:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+}
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #bbb;
+}
+#congratsMessage {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Confetti animation - you can use a confetti library like `canvas-confetti` for a real confetti effect */
+body.confetti {
+    animation: confetti 3s forwards;
+}
+
+@keyframes confetti {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(100px);
+    }
+}
+
+.task-item.removing {
+    animation: slideOut 0.3s forwards;
+}
+
+@keyframes slideOut {
+    to {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+}
+
+.task-checkbox {
+    margin-right: 15px;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.task-text {
+    flex: 1;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.completed .task-text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.delete-btn {
+    background-color: transparent;
+    color: #ccc;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.delete-btn:hover {
+    color: var(--danger);
+    transform: scale(1.2);
+}
+
+/* Task stats */
+.task-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #777;
+}
+
+#clearCompleted {
+    background: transparent;
+    border: none;
+    color: var(--secondary);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#clearCompleted:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+}
+
+/* Task completion animation */
+@keyframes taskComplete {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); background-color: rgba(40, 167, 69, 0.2); }
+    100% { transform: scale(1); }
+}
+
+.task-complete-animation {
+    animation: taskComplete 0.5s ease;
+}
+
+/* Task addition animation */
+@keyframes taskAdd {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+.task-add-animation {
+    animation: taskAdd 0.4s ease-out forwards;
+}
+
+/* Checkbox animation */
+@keyframes checkmarkAppear {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.checkbox-animation .task-checkbox::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(40, 167, 69, 0.3);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: checkmarkAppear 0.4s ease-out forwards;
+}
